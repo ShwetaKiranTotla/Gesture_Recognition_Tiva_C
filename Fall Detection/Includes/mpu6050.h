@@ -1,15 +1,19 @@
 /*
- * mpu6050.h
+ * main.h
  *
- *  Created on: 06-Nov-2023
+ *  Created on: 28-Nov-2023
  *      Author: Shweta Kiran
- *      Description: Addresses of registers of MPU6050
  */
-
 #ifndef MPU6050_H_
 #define MPU6050_H_
 
-#define MPU_ADDR            0x68
+#define MPU_ADDR 0x68
+
+void MPU_Init(void); //Initialize the MPU
+static int I2C3_wait_till_busy(void); //wait till i2c master is busy
+int WriteByte(int SlaveAddr, int MemAddr, int data); //Write data to the MemAddr of the SlaveAddr
+int ReadBytes(int SlaveAddr, int MemAddr, int byte_count, char* data);
+int ReadByte(int SlaveAddr, int MemAddr, int byte_count, int* data);
 
 #define XG_OFFS_TC          0X00
 #define YG_OFFS_TC          0x01
@@ -121,6 +125,5 @@
 #define FIFO_COUNTL         0x73
 #define FIFO_R_W            0x74
 #define WHO_AM_I            0x75
-
 
 #endif /* MPU6050_H_ */

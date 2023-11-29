@@ -3,13 +3,13 @@
 #include <stdio.h>
 #include "tm4c123gh6pm.h"
 
-
 /*
- * uart.c
+ * uart0.c
  *
- *  Created on: 20-Nov-2023
- *      Author: Shweta KIran
+ *  Created on: 18-Nov-2023
+ *      Author: Shweta Kiran
  */
+
 void UART0_Init(void) {
     SYSCTL_RCGCUART_R |= 0x01;   // Enable UART0
     SYSCTL_RCGCGPIO_R |= 0x01;   // Enable GPIO Port A
