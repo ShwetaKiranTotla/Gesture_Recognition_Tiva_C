@@ -9,7 +9,7 @@ As this was the first time with MPU6050, I started with understanding the regist
 
 Simultaneously I was also working on configuring I2C with the microcontroller as the MPU uses I2C to communicate (there are other involved options as well).
 
-There were erratic samples in the data being read (the values of linear and angular acceleration would be quite high even when the device was stationary). Considering the possibility of oversampling, a delay was added after each iteration but that did not help (because the data wasn'tbeing oversampled!). Then, after some brainstorming, to filter noise from the samples, a Parks McCollen filter was simulated in MATLAB, but I did not implement it, instead I implemented a combination of two facts: one, when the values of acceleration is erratic, so is the value of temperature, so only those samples which have a reasonable temperature were read and a moving average filter over these data.
+There were erratic samples in the data being read (the values of linear and angular acceleration would be quite high even when the device was stationary). Considering the possibility of oversampling, a delay was added after each iteration but that did not help (because the data wasn't being oversampled!). Then, after some brainstorming, to filter noise from the samples, a Parks McCollen filter was simulated in MATLAB, but I did not implement it, instead I implemented a combination of two facts: one, when the values of acceleration is erratic, so is the value of temperature, so only those samples which have a reasonable temperature were read and a moving average filter over these data.
 I also used the data ready interrupt of the MPU to read samples and it helped.
 
 ## References
