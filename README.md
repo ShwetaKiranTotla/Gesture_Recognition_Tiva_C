@@ -2,14 +2,14 @@
 This repository contains files for gesture recognition (in C) using the TM4C123GH6PM MCU and MPU6050 6 axis IMU using TI CCS.  
 
 
-This project was done when I had a fairly good grasp on programming the ARM Cortex core and Tiva C series microcontroller. Thanks to Abhijit Sir, I am not dependant on libraries and have directly accessed the registers.
+This project was done when I had a fairly good grasp on programming the ARM Cortex core and Tiva C series microcontroller. Thanks to Abhijit Sir, I am not dependent on libraries and have directly accessed the registers.
 
 ## The Journey: From Idea to Code
 As this was the first time with MPU6050, I started with understanding the register from the official documentation of the sensor. Based on this a header file containing register address was compiled.
 
 Simultaneously I was also working on configuring I2C with the microcontroller as the MPU uses I2C to communicate (there are other involved options as well).
 
-There were erratic samples in the data being read (the values of linear and angular acceleration would be quite high even when the device was stationary). Considering the possibility of oversampling, a delay was added after each iteration but that did not help (because the data wasn't being oversampled!). Then, after some brainstorming, to filter noise from the samples, a Parks McCollen filter was simulated in MATLAB, but I did not implement it, instead I implemented a combination of two facts: one, when the values of acceleration is erratic, so is the value of temperature, so only those samples which have a reasonable temperature were read and a moving average filter over these data.
+There were erratic samples in the data being read (the values of linear and angular acceleration would be quite high even when the device was stationary). Considering the possibility of oversampling, a delay was added after each iteration but that did not help (because the data wasn't being oversampled!). Nor did changing the sensitivity from 2g to 4g. After initializing the arrays to 0, the values of ax, ay were not visible (that were previously visible) in the expression of CCS debugger. Then, after some brainstorming, to filter noise from the samples, a Parks McCollen filter was simulated in MATLAB, but I did not implement it, instead I implemented a combination of two facts: one, when the values of acceleration is erratic, so is the value of temperature, so only those samples which have a reasonable temperature were read and a moving average filter over these data.
 I also used the data ready interrupt of the MPU to read samples and it helped.
 
 ## References
