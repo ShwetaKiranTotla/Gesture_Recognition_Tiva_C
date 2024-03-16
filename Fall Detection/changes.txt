@@ -1,4 +1,1 @@
-Changes in intx
 
-1. Uncommented GPIO_PORTF_LOCK_R = 0;     /* lock commit register */
-2. Made header for main
